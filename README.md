@@ -1,4 +1,4 @@
-# Project Title
+# kwh api
 
 - This is a simple express API that retrieves hourly electricity prices from Nordpool and returns them as JSON.
 - This app uses: [https://github.com/samuelmr/nordpool-node](https://github.com/samuelmr/nordpool-node)
