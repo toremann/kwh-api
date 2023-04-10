@@ -1,10 +1,20 @@
 const express = require("express");
-const { fetchPrices } = require("./price.js");
+const { getAllPrices, getHighestAndLowestPrices } = require("./price.js");
 const app = express();
 
-app.get("/", async (req, res) => {
+app.get("/all", async (req, res) => {
   try {
-    const prices = await fetchPrices();
+    const prices = await getAllPrices();
+    res.json(prices);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred while fetching prices" });
+  }
+});
+
+app.get("/highlow", async (req, res) => {
+  try {
+    const prices = await getHighestAndLowestPrices();
     res.json(prices);
   } catch (error) {
     console.error(error);

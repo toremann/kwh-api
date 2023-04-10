@@ -7,10 +7,9 @@ const opts = {
   currency: "NOK", // can also be 'DKK', 'EUR', 'NOK'
 };
 
-const fetchPrices = async () => {
-  let results;
+const getAllPrices = async () => {
   try {
-    results = await prices.hourly(opts);
+    const results = await prices.hourly(opts);
     const formattedResults = results.map((result) => {
       const date = result.date;
       const price = result.value;
@@ -24,4 +23,29 @@ const fetchPrices = async () => {
   }
 };
 
-module.exports.fetchPrices = fetchPrices;
+const getHighestAndLowestPrices = async () => {
+  try {
+    const allPrices = await getAllPrices();
+    const highestPriceObj = allPrices.reduce((acc, curr) => {
+      return acc.price > curr.price ? acc : curr;
+    });
+    const lowestPriceObj = allPrices.reduce((acc, curr) => {
+      return acc.price < curr.price ? acc : curr;
+    });
+
+    const highestPrice = highestPriceObj.price;
+    const highestPriceTime = highestPriceObj.time;
+    const lowestPrice = lowestPriceObj.price;
+    const lowestPriceTime = lowestPriceObj.time;
+
+    console.log('dyrest idag: ', highestPrice, 'kl:', highestPriceTime);
+    console.log('billigst idag: ', lowestPrice, 'kl:', lowestPriceTime);
+
+    return { highestPrice, highestPriceTime, lowestPrice, lowestPriceTime };
+  } catch (error) {
+    console.error(error);
+    return { error: "An error occurred while fetching prices" };
+  }
+};
+
+module.exports = { getAllPrices, getHighestAndLowestPrices };
