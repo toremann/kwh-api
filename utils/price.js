@@ -15,7 +15,6 @@ const getAllPrices = async () => {
       const price = result.value;
       return { time: date, price: price };
     });
-    console.log(formattedResults);
     return formattedResults;
   } catch (error) {
     console.error(error);
@@ -37,9 +36,6 @@ const getHighestAndLowestPrices = async () => {
     const highestPriceTime = highestPriceObj.time;
     const lowestPrice = lowestPriceObj.price;
     const lowestPriceTime = lowestPriceObj.time;
-
-    console.log('dyrest idag: ', highestPrice, 'kl:', highestPriceTime);
-    console.log('billigst idag: ', lowestPrice, 'kl:', lowestPriceTime);
 
     return { highestPrice, highestPriceTime, lowestPrice, lowestPriceTime };
   } catch (error) {

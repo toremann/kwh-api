@@ -7,7 +7,7 @@ const options = {
     info: {
       title: "kwh-api",
       version: "1.0.0",
-      description: "API documentation using Swagger",
+      description: "This API provides access to price information fetched from nordpool.",
     },
   },
   apis: ["./routes/v1/*.js"], 
