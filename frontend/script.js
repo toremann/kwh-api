@@ -1,6 +1,9 @@
-// Load chart data
 window.addEventListener("load", function () {
-  fetch("http://localhost:3000/v1/prices/all")
+  fetch('http://localhost:3000/v1/prices/all', {
+  headers: {
+    'X-API-KEY': 'api123'
+  }
+})
     .then((response) => response.json())
     .then((data) => {
       // Extract labels and values from data
@@ -97,7 +100,11 @@ window.addEventListener("load", function () {
 
 // Load highest and lowest price data
 window.addEventListener("load", function () {
-  fetch("http://localhost:3000/v1/prices/highlow")
+  fetch('http://localhost:3000/v1/prices/highlow', {
+  headers: {
+    'X-API-KEY': 'api123'
+  }
+})
     .then((response) => response.json())
     .then((data) => {
       // Get the element with id 'highlow'

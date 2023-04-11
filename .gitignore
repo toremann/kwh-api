@@ -1,2 +1,4 @@
 /node_modules
 http.rest
+.env
+.vscode/settings.json
