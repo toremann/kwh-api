@@ -1,6 +1,6 @@
 // Load chart data
 window.addEventListener('load', function() {
-    fetch('http://localhost:3000/all')
+    fetch('http://localhost:3000/v1/prices/all')
       .then(response => response.json())
       .then(data => {
         // Extract labels and values from data
@@ -54,7 +54,7 @@ window.addEventListener('load', function() {
   
   // Load highest and lowest price data
   window.addEventListener('load', function() {
-    fetch('http://localhost:3000/highlow')
+    fetch('http://localhost:3000/v1/prices/highlow')
       .then(response => response.json())
       .then(data => {
         // Get the element with id 'highlow'
@@ -62,10 +62,10 @@ window.addEventListener('load', function() {
   
         // Create new elements for highest and lowest price
         const highestPriceElement = document.createElement('p');
-        highestPriceElement.textContent = `Highest Price: ${data.highestPrice}, at ${new Date(data.highestPriceTime).toLocaleTimeString('en-GB')}`;
+        highestPriceElement.textContent = `Strømmen er dyrest: ${data.highestPrice}, klokka ${new Date(data.highestPriceTime).toLocaleTimeString('en-GB')}`;
   
         const lowestPriceElement = document.createElement('p');
-        lowestPriceElement.textContent = `Lowest Price: ${data.lowestPrice}, at ${new Date(data.lowestPriceTime).toLocaleTimeString('en-GB')}`;
+        lowestPriceElement.textContent = `Strømmen er billigst: ${data.lowestPrice}, at ${new Date(data.lowestPriceTime).toLocaleTimeString('en-GB')}`;
   
         // Append the new elements to the 'highlow' element
         highLowElement.appendChild(highestPriceElement);

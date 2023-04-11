@@ -2,7 +2,9 @@
   "type": "commonjs",
   "dependencies": {
     "express": "^4.18.2",
-    "nordpool": "^5.0.1"
+    "nordpool": "^5.0.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.2"
   },
   "name": "kwh-api",
   "version": "1.0.0",
