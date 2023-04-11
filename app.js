@@ -1,6 +1,10 @@
 const express = require("express");
 const { getAllPrices, getHighestAndLowestPrices } = require("./price.js");
+const cors = require('cors');
 const app = express();
+
+app.use(cors());
+
 
 app.get("/all", async (req, res) => {
   try {
