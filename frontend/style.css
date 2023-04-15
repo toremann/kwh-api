@@ -1,9 +1,14 @@
 /* Styles for the header element */
+body {
+  background-color: #272652;
+}
+
 #header {
-    background-color: #333;
-    color: #fff;
+    background-color: #272652;
+    color: #ebb2ff;
     padding: 20px;
     font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
   }
   
   /* Styles for the chart canvas */

@@ -1,3 +1,7 @@
 /frontend
 http.rest
 .env
+/__tests__
+/.github
+/.vscode
+/.git

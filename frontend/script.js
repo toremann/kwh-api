@@ -2,7 +2,7 @@ window.addEventListener("load", function () {
   fetch("http://localhost:3000/v1/prices/all", {
     // Example api key
     headers: {
-      "X-API-KEY": "abc123",
+      "X-API-KEY": "test",
     },
   })
     .then((response) => response.json())
@@ -27,7 +27,9 @@ window.addEventListener("load", function () {
 
       const lowestColor = "green";
       const highestColor = "red";
-      const baseColor = "rgba(75, 192, 192, 1)";
+      const baseColor = "#fff";
+      const yGridColor = "#AEAEAE";
+      const xGridColor = "#AEAEAE";
 
       // Create an array of colors for each point in the dataset
       const pointColors = values.map((value) => {
@@ -48,7 +50,9 @@ window.addEventListener("load", function () {
             label: "Price",
             data: values,
             fill: true,
-            borderColor: "rgb(75, 192, 192)",
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgb(255, 99, 132)",
+            borderColor: baseColor,
             tension: 0.4,
             pointBackgroundColor: pointColors,
             pointRadius: values.map((value, index) =>
@@ -60,18 +64,27 @@ window.addEventListener("load", function () {
         ],
       };
       const options = {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
         responsive: true,
         maintainAspectRatio: true,
         scales: {
           x: {
             title: {
-              display: true,
+              display: false,
               text: "Time",
+            },
+            grid: {
+              display: false,
+              color: xGridColor, // Set the color of the grid lines
             },
           },
           y: {
             title: {
-              display: true,
+              display: false,
               text: "Price (NOK)",
             },
             beginAtZero: true,
@@ -84,6 +97,10 @@ window.addEventListener("load", function () {
                   maximumFractionDigits: 2,
                 });
               },
+            },
+            grid: {
+              display: true,
+              color: yGridColor, // Set the color of the grid lines
             },
           },
         },
@@ -104,36 +121,31 @@ window.addEventListener("load", function () {
   fetch("http://localhost:3000/v1/prices/highlow", {
     // Example api key
     headers: {
-      "X-API-KEY": "abc123",
+      "X-API-KEY": "test",
     },
   })
     .then((response) => response.json())
     .then((data) => {
       // Get the element with id 'highlow'
-      const highLowElement = document.getElementById("highlow");
+      const highLowElement = document.getElementById("header");
 
       // Create new elements for highest and lowest price
       const highestPriceElement = document.createElement("p");
-      highestPriceElement.textContent = `Strømmen er dyrest: ${(
-        data.highestPrice / 1000
-      ).toLocaleString("nb-NO", {
-        style: "currency",
-        currency: "NOK",
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      })} klokka ${new Date(data.highestPriceTime).toLocaleTimeString(
-        "en-GB"
-      )}`;
-
+      highestPriceElement.textContent = `Strømmen er dyrest klokka ${new Date(
+        data.highestPriceTime
+      ).toLocaleTimeString("nb-NO", {
+        hour: "2-digit",
+        minute: "2-digit"
+      })}`;
+      
       const lowestPriceElement = document.createElement("p");
-      lowestPriceElement.textContent = `Strømmen er biligst: ${(
-        data.lowestPrice / 1000
-      ).toLocaleString("nb-NO", {
-        style: "currency",
-        currency: "NOK",
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      })} at ${new Date(data.lowestPriceTime).toLocaleTimeString("en-GB")}`;
+      lowestPriceElement.textContent = `Strømmen er billigst klokka: ${new Date(
+        data.lowestPriceTime
+      ).toLocaleTimeString("nb-NO", {
+        hour: "2-digit",
+        minute: "2-digit"
+      })}`;
+      
 
       // Append the new elements to the 'highlow' element
       highLowElement.appendChild(highestPriceElement);
