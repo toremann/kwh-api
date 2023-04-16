@@ -21,3 +21,11 @@ const opts = {
   currency: 'NOK' // can also be 'DKK', 'EUR', 'NOK'
 };
 ```
+
+## Docker
+
+Build image.
+- docker build -t kwh-api .
+
+Run with env.
+- docker run -e API_KEY=abc12345abc12345abc12345abc12345abc12345 -p 3000:3000 kwh-api:latest

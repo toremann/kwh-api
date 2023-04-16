@@ -7,7 +7,7 @@ const opts = {
   currency: "NOK", // can also be 'DKK', 'EUR', 'NOK'
 };
 
-const getAllPrices = async () => {
+const getTodaysPrices = async () => {
   try {
     const results = await prices.hourly(opts);
     const formattedResults = results.map((result) => {
@@ -24,7 +24,7 @@ const getAllPrices = async () => {
 
 const getHighestAndLowestPrices = async () => {
   try {
-    const allPrices = await getAllPrices();
+    const allPrices = await getTodaysPrices();
     const highestPriceObj = allPrices.reduce((acc, curr) => {
       return acc.price > curr.price ? acc : curr;
     });
@@ -44,4 +44,4 @@ const getHighestAndLowestPrices = async () => {
   }
 };
 
-module.exports = { getAllPrices, getHighestAndLowestPrices };
+module.exports = { getTodaysPrices, getHighestAndLowestPrices };

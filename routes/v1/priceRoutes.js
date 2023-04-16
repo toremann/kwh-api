@@ -1,6 +1,6 @@
 const express = require("express");
 const {
-  getAllPrices,
+  getTodaysPrices,
   getHighestAndLowestPrices,
 } = require("../../utils/price.js");
 
@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/all", async (req, res) => {
   try {
-    const prices = await getAllPrices();
+    const prices = await getTodaysPrices();
     res.json(prices);
   } catch (error) {
     console.error(error);

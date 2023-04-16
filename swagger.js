@@ -9,6 +9,13 @@ const options = {
       version: "1.0.0",
       description: "This API provides access to price information fetched from nordpool.",
     },
+    securityDefinitions: {
+      apiKey: {
+        type: "apiKey",
+        name: "x-api-key",
+        in: "header",
+      },
+    },
   },
   apis: ["./routes/v1/*.js"], 
 };
@@ -16,5 +23,9 @@ const options = {
 const swaggerSpec = swaggerJsDoc(options);
 
 module.exports = function (app) {
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+    swaggerOptions: {
+      security: [{ apiKey: [] }],
+    },
+  }));
 };

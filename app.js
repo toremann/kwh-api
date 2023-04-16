@@ -11,9 +11,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const apiKeyFormat = /[A-Za-z0-9]{32}/;
-const validApiKeys = new Set([process.env.API_KEY]); // test key
+const validApiKeys = new Set([process.env.API_KEY]); // Specify key in .env file or in docker env.
 
-function verifyApiKey(req, res, next) {
+const verifyApiKey = (req, res, next) => {
   const apiKey = req.header("X-API-KEY") || req.query.apiKey;
   if (!apiKey || !apiKeyFormat.test(apiKey)) {
     return res.status(401).json({ error: "Invalid API key" });
