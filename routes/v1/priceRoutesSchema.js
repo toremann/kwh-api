@@ -58,3 +58,23 @@
  *     security:
  *       - apiKey: []
  */
+
+/**
+ * @swagger
+ * /v1/prices/average:
+ *   get:
+ *     summary: Returns the average price
+ *     tags: [Prices]
+ *     responses:
+ *       200:
+ *         description: Average price
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 average:
+ *                   type: number
+ *     security:
+ *       - apiKey: []
+ */

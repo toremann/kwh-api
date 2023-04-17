@@ -1,8 +1,8 @@
 window.addEventListener("load", function () {
-  fetch("http://localhost:3000/v1/prices/all", {
+  fetch("http://localhost:3000/v1/prices/today", {
     // Example api key
     headers: {
-      "X-API-KEY": "test",
+      "X-API-KEY": "abc12345abc12345abc12345abc12345abc12345abc12345",
     },
   })
     .then((response) => response.json())
@@ -121,7 +121,7 @@ window.addEventListener("load", function () {
   fetch("http://localhost:3000/v1/prices/highlow", {
     // Example api key
     headers: {
-      "X-API-KEY": "test",
+      "X-API-KEY": "abc12345abc12345abc12345abc12345abc12345abc12345",
     },
   })
     .then((response) => response.json())
