@@ -22,6 +22,20 @@ const getTodaysPrices = async () => {
   }
 };
 
+const getAveragePrice = async () => {
+  try {
+    const allPrices = await getTodaysPrices();
+    const total = allPrices.reduce((acc, cur) => {
+      return acc + cur.price;
+    }, 0);
+    const averagePrice = total / allPrices.length;
+    return averagePrice;
+  } catch (error) {
+    console.error(error);
+    return { error: "An error occurred while fetching prices" };
+  }
+};
+
 const getHighestAndLowestPrices = async () => {
   try {
     const allPrices = await getTodaysPrices();
@@ -44,4 +58,4 @@ const getHighestAndLowestPrices = async () => {
   }
 };
 
-module.exports = { getTodaysPrices, getHighestAndLowestPrices };
+module.exports = { getTodaysPrices, getHighestAndLowestPrices, getAveragePrice };
