@@ -1,7 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const rateLimit = require("express-rate-limit");
-const priceRoutes = require("./routes/v1/priceRoutes");
+const priceRoutesv1 = require("./routes/v1/priceRoutes");
+const priceRoutesv2 = require("./routes/v2/priceRoutes");
 const swaggerDoc = require("./swagger");
 require('dotenv').config();
 
@@ -30,7 +31,8 @@ const limiter = rateLimit({
   message: "Too many requests, please try again later",
 });
 
-app.use("/v1/prices", limiter, verifyApiKey, priceRoutes); 
+app.use("/v1/prices", limiter, verifyApiKey, priceRoutesv1); 
+app.use("/v2/prices", limiter, verifyApiKey, priceRoutesv2); 
 swaggerDoc(app);
 
 app.listen(3000, () => {

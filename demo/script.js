@@ -16,8 +16,6 @@ window.addEventListener("load", function () {
       );
       const values = data.map((obj) => obj.price);
 
-      console.log(values);
-
       // Get chart canvas element
       const ctx = document.getElementById("myChart");
 
@@ -152,3 +150,20 @@ window.addEventListener("load", function () {
       highLowElement.appendChild(lowestPriceElement);
     });
 });
+
+window.addEventListener("load", function () {
+  fetch("http://localhost:3000/v1/prices/average", {
+    // Example api key
+    headers: {
+      "X-API-KEY": "abc12345abc12345abc12345abc12345abc12345abc12345",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Gjennomsnitts pris idag: ', (data / 1000).toLocaleString("nb-NO", {
+        style: "currency",
+        currency: "NOK",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }))
+})});
