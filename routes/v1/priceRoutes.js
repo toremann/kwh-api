@@ -37,15 +37,4 @@ router.get("/highlow", async (req, res) => {
   }
 });
 
-// router.get("/push", async (req, res) => {
-//   try {
-//     const prices = await getHighestAndLowestPrices();
-//     const average = await getAveragePrice();
-//     res.json({prices, average});
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "An error occurred while fetching prices" });
-//   }
-// });
-
 module.exports = router;

@@ -2,7 +2,7 @@ const request = require('supertest');
 const express = require('express');
 const { getTodaysPrices, getHighestAndLowestPrices, getAveragePrice } = require('../utils/price.js');
 
-const router = require('../routes/v1/priceRoutes');
+const router = require('../routes/v1/priceRoutes.js');
 
 jest.mock('../utils/price.js');
 

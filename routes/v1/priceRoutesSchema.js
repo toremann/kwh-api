@@ -7,7 +7,7 @@
  *     in: header
  *
  * tags:
- *   name: Prices
+ *   name: Prices v1
  *   description: API for getting price information
  */
 
