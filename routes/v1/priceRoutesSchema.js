@@ -1,18 +1,5 @@
 /**
  * @swagger
- * securityDefinitions:
- *   apiKey:
- *     type: apiKey
- *     name: x-api-key
- *     in: header
- *
- * tags:
- *   name: Prices v1
- *   description: API for getting price information
- */
-
-/**
- * @swagger
  * /v1/prices/all:
  *   get:
  *     summary: Returns all prices

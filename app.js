@@ -4,8 +4,9 @@ const rateLimit = require("express-rate-limit");
 const priceRoutesv1 = require("./routes/v1/priceRoutes");
 const priceRoutesv2 = require("./routes/v2/priceRoutes");
 const swaggerDoc = require("./swagger");
+const morgan = require("morgan");
 // require('dotenv').config();
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 
 const app = express();
 app.use(cors());
@@ -24,7 +25,7 @@ const verifyApiKey = (req, res, next) => {
     return res.status(401).json({ error: "Unauthorized" });
   }
   next();
-}
+};
 
 const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
@@ -32,10 +33,11 @@ const limiter = rateLimit({
   message: "Too many requests, please try again later",
 });
 
-app.use("/v1/prices", limiter, verifyApiKey, priceRoutesv1); 
-app.use("/v2/prices", limiter, verifyApiKey, priceRoutesv2); 
+app.use(morgan("[:date[clf]] :method :url"));
+app.use("/v1/prices", limiter, verifyApiKey, priceRoutesv1);
+app.use("/v2/prices", limiter, verifyApiKey, priceRoutesv2);
 swaggerDoc(app);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });

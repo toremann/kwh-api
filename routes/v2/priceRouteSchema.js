@@ -2,7 +2,6 @@
  * @swagger
  * tags:
  *   name: Prices
- *   description: API endpoint for push notification
  * /v2/prices/push:
  *   get:
  *     summary: Get highest and lowest electricity prices and average price for the day
