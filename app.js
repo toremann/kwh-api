@@ -4,7 +4,8 @@ const rateLimit = require("express-rate-limit");
 const priceRoutesv1 = require("./routes/v1/priceRoutes");
 const priceRoutesv2 = require("./routes/v2/priceRoutes");
 const swaggerDoc = require("./swagger");
-require('dotenv').config();
+// require('dotenv').config();
+const port = process.env.PORT || 3000
 
 const app = express();
 app.use(cors());
@@ -35,6 +36,6 @@ app.use("/v1/prices", limiter, verifyApiKey, priceRoutesv1);
 app.use("/v2/prices", limiter, verifyApiKey, priceRoutesv2); 
 swaggerDoc(app);
 
-app.listen(3000, () => {
-  console.log("Server listening on port 3000");
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
 });
