@@ -59,7 +59,7 @@ router.get("/push", async (req, res) => {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     })}NOK/kWh).`;
-    res.send(priceInfo);
+    res.json({push: priceInfo});
     // Gjennomsnittlig pris for ditt område idag 1,09NOK/kWh. Strømmen er dyrest fra 08:00 til 09:00. (1,45NOK/kWh). Strømmen er billigst fra 14:00 til 15:00 (0,85NOK/kWh).
   } catch (error) {
     console.error(error);
